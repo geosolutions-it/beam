@@ -178,7 +178,7 @@ public class PixelGeoCoding extends AbstractGeoCoding {
 
         pixelPosEstimator = latBand.getProduct().getGeoCoding();
 
-        final int subSampling = 30;
+        final int subSampling = 1;
         if (pixelPosEstimator == null && useTiling && rasterWidth / subSampling > 1 && rasterHeight / subSampling > 1) {
 
             final int tpGridWidth = rasterWidth / subSampling;

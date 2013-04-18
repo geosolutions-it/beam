@@ -236,7 +236,25 @@ public class CfBandPart extends ProfilePartIO {
         if (attribute == null) {
             attribute = variable.findAttribute(Constants.MISSING_VALUE_ATT_NAME);
         }
-        return attribute != null ? attribute.getNumericValue().doubleValue() : null;
+        if (attribute != null) {
+            Number numericValue = attribute.getNumericValue();
+            if (numericValue != null) {
+                return numericValue.doubleValue();
+            }
+            String stringValue = attribute.getStringValue();
+            if (stringValue != null) {
+                try {
+                    return Double.parseDouble(stringValue);
+                } catch (NumberFormatException nfe) {
+                    if (stringValue.endsWith("b")) {
+                        // Special management for bytes
+                        return Byte.parseByte(stringValue.substring(0, stringValue.length()-1));
+                    }
+                    
+                }
+            }
+        }
+        return null;
     }
 
     private static int getRasterDataType(Variable variable, DataTypeWorkarounds workarounds) {
