@@ -32,13 +32,13 @@
     <groupId>org.esa.beam</groupId>
     <artifactId>beam-system</artifactId>
     <description>This POM serves as aggregator for all BEAM system level modules.</description>
-    <version>5.0-SNAPSHOT</version>
+    <version>5.0-GS-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <beam.version>5.0-SNAPSHOT</beam.version>
+        <beam.version>5.0-GS-SNAPSHOT</beam.version>
         <ceres.version>0.14-SNAPSHOT</ceres.version>
-        <geotools.version>2.7.4</geotools.version>
+        <geotools.version>8-SNAPSHOT</geotools.version>
         <jide.version>3.5.3</jide.version>
         <!-- This property is set in beam-parent; reason? see there!-->
         <!--<hdf.version>2.7</hdf.version>-->
