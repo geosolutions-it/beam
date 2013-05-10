@@ -103,7 +103,7 @@
                 <enabled>true</enabled>
             </snapshots>
         </pluginRepository>
-    </pluginRepositories -->
+    </pluginRepositories>
 
     <distributionManagement>
         <repository>
@@ -118,7 +118,7 @@
             <url>scp://www.brockmann-consult.de/var/www/www.brockmann-consult.de/mvn/os</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
-    </distributionManagement>
+    </distributionManagement -->
 
     <developers>
         <developer>
