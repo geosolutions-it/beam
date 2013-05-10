@@ -5,7 +5,7 @@
     <parent>
         <artifactId>beam-parent</artifactId>
         <groupId>org.esa.beam</groupId>
-        <version>1</version>
+        <version>1-GS</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -17,7 +17,7 @@
     <description>This POM serves as aggregator for all BEAM plugin modules.</description>
     <!--The version number is never to be changed!
     It has to remain at 1-SNAPSHOT! -->
-    <version>1-SNAPSHOT</version>
+    <version>1-GS-SNAPSHOT</version>
 
     <modules>
         <module>../beam-aatsr-sst</module>
