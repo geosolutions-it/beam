@@ -89,4 +89,44 @@ public class UtilConstants {
     public static final String CS_TYPE_ECLR = "ColorSpace.TYPE_ECLR";
     public static final String CS_TYPE_FCLR = "ColorSpace.TYPE_FCLR";
     public static final String CS_TYPE_UNKNOWN = "ColorSpace.TYPE_<?>";
+
+    public static final int SEARCH_RADIUS;
+    public static final float TILE_SIZE;
+    public static final int SUBSAMPLING;
+    public static final int POINTS_PER_SIDE_DIVIDER;
+
+    private static final int DEFAULT_SEARCH_RADIUS = 5;
+    private static final float DEFAULT_TILE_SIZE = 10.0f;
+    private static final int DEFAULT_SUBSAMPLING = 30;
+    private static final int DEFAULT_POINTS_PER_SIDE_DIVIDER = 10;
+
+    static {
+        String searchRadius = System.getProperty("org.esa.beam.searchradius");
+        if (searchRadius != null) {
+            SEARCH_RADIUS = Integer.valueOf(searchRadius);
+        } else {
+            SEARCH_RADIUS = DEFAULT_SEARCH_RADIUS;
+        }
+
+        String tileSize = System.getProperty("org.esa.beam.tilesize");
+        if (tileSize != null) {
+            TILE_SIZE = Float.valueOf(tileSize);
+        } else {
+            TILE_SIZE = DEFAULT_TILE_SIZE;
+        }
+
+        String subsampling = System.getProperty("org.esa.beam.subsampling");
+        if (subsampling != null) {
+            SUBSAMPLING = Integer.valueOf(subsampling);
+        } else {
+            SUBSAMPLING = DEFAULT_SUBSAMPLING;
+        }
+
+        String ppsdivider = System.getProperty("org.esa.beam.ppsdivider");
+        if (ppsdivider != null) {
+            POINTS_PER_SIDE_DIVIDER= Integer.valueOf(ppsdivider);
+        } else {
+            POINTS_PER_SIDE_DIVIDER = DEFAULT_POINTS_PER_SIDE_DIVIDER;
+        }
+    }
 }

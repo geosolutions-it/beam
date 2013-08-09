@@ -29,6 +29,7 @@ import org.esa.beam.util.BitRaster;
 import org.esa.beam.util.Debug;
 import org.esa.beam.util.Guardian;
 import org.esa.beam.util.ProductUtils;
+import org.esa.beam.util.UtilConstants;
 import org.esa.beam.util.math.IndexValidator;
 import org.esa.beam.util.math.MathUtils;
 
@@ -178,7 +179,7 @@ public class PixelGeoCoding extends AbstractGeoCoding {
 
         pixelPosEstimator = latBand.getProduct().getGeoCoding();
 
-        final int subSampling = 1;
+        final int subSampling = UtilConstants.SUBSAMPLING;
         if (pixelPosEstimator == null && useTiling && rasterWidth / subSampling > 1 && rasterHeight / subSampling > 1) {
 
             final int tpGridWidth = rasterWidth / subSampling;

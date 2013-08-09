@@ -34,6 +34,7 @@ import org.esa.beam.framework.datamodel.PixelPos;
 import org.esa.beam.framework.datamodel.Product;
 import org.esa.beam.framework.datamodel.ProductData;
 import org.esa.beam.jai.ImageManager;
+import org.esa.beam.util.UtilConstants;
 import org.esa.beam.util.logging.BeamLogManager;
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
@@ -324,7 +325,7 @@ public class CfGeocodingPart extends ProfilePartIO {
             latBand = product.getBand(Constants.LATITUDE_VAR_NAME);
         }
         if (latBand != null && lonBand != null) {
-            return new PixelGeoCoding(latBand, lonBand, latBand.getValidMaskExpression(), 5);
+            return new PixelGeoCoding(latBand, lonBand, latBand.getValidMaskExpression(), UtilConstants.SEARCH_RADIUS);
         }
         return null;
     }

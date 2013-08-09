@@ -16,6 +16,7 @@
 package org.esa.beam.framework.datamodel;
 
 import org.esa.beam.jai.ImageManager;
+import org.esa.beam.util.UtilConstants;
 import org.esa.beam.util.math.MathUtils;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.resources.geometry.XRectangle2D;
@@ -180,7 +181,7 @@ public class ImageGeometry {
             Rectangle2D rect;
             rect = XRectangle2D.createFromExtremums(0.5, 0.5, sourceW - 0.5, sourceH - 0.5);
 //                rect = createValidRect(product);
-            int pointsPerSide = Math.min(sourceH, sourceW) / 10;
+            int pointsPerSide = Math.max(sourceH, sourceW) / UtilConstants.POINTS_PER_SIDE_DIVIDER;
             pointsPerSide = Math.max(9, pointsPerSide);
             final ReferencedEnvelope sourceEnvelope = new ReferencedEnvelope(rect, sourceCrs);
             final ReferencedEnvelope targetEnvelope = sourceEnvelope.transform(targetCrs, true, pointsPerSide);

@@ -19,6 +19,7 @@ import org.esa.beam.framework.dataio.ProductSubsetDef;
 import org.esa.beam.framework.dataop.maptransf.Datum;
 import org.esa.beam.util.Debug;
 import org.esa.beam.util.Guardian;
+import org.esa.beam.util.UtilConstants;
 import org.esa.beam.util.math.FXYSum;
 import org.esa.beam.util.math.MathUtils;
 
@@ -431,7 +432,7 @@ public class TiePointGeoCoding extends AbstractGeoCoding {
             final float lonSpan = normalizedLonMax - normalizedLonMin;
             final float latSpan = latMax - latMin;
             final float angleSpan = Math.max(lonSpan, latSpan);
-            numTiles = Math.round(angleSpan / 10.0f);
+            numTiles = Math.round(angleSpan / UtilConstants.TILE_SIZE);
             if (numTiles < 1) {
                 numTiles = 1;
             }
