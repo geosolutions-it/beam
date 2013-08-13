@@ -54,7 +54,7 @@
         </dependency>
     </dependencies>
 
-    <repositories>
+    <!-- repositories>
         <repository>
             <id>bc-mvn-repo</id>
             <name>Public Maven Repository at Brockmann Consult</name>
@@ -120,7 +120,7 @@
             <url>scp://www.brockmann-consult.de/var/www/www.brockmann-consult.de/mvn/os</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
-    </distributionManagement>
+    </distributionManagement -->
 
     <developers>
         <developer>
