@@ -84,6 +84,14 @@
             <url>http://download.osgeo.org/webdav/geotools/</url>
         </repository>
         <repository>
+          <id>OpenGeo</id>
+          <name>OpenGeo libraries repository</name>
+          <url>http://repo.opengeo.org/</url>
+          <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
           <id>geosolutions</id>
           <name>GeoSolutions libraries repository</name>
           <url>http://maven.geo-solutions.it/</url>
