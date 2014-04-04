@@ -88,6 +88,10 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
     public static final String PROPERTY_NAME_VALID_PIXEL_EXPRESSION = "validPixelExpression";
     public static final String PROPERTY_NAME_GEOCODING = Product.PROPERTY_NAME_GEOCODING;
     public static final String PROPERTY_NAME_STX = "stx";
+    public static final String PROPERTY_NAME_STANDARD_NAME = "standard_name";
+    public static final String PROPERTY_NAME_COMMENT = "comment";
+    private static final String PROPERTY_NAME_VALID_MIN = "valid_min";
+    private static final String PROPERTY_NAME_VALID_MAX = "valid_max";
 
     /**
      * Text returned by the <code>{@link #getPixelString(int, int)}</code> method if no data is available at the given pixel
@@ -141,6 +145,7 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
      * Number of bytes used for internal read buffer.
      */
     private static final int READ_BUFFER_MAX_SIZE = 8 * 1024 * 1024; // 8 MB
+
     private Pointing pointing;
 
     private MultiLevelImage sourceImage;
@@ -151,6 +156,11 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
     private MultiLevelImage validMaskImage;
 
     private ROI validMaskROI;
+    private String standard_name;
+    private String comment;
+    private Number valid_min;
+    private Number valid_max;
+
 
     /**
      * Constructs an object of type <code>RasterDataNode</code>.
@@ -604,6 +614,94 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
      */
     public void setGeophysicalNoDataValue(double noDataValue) {
         setNoDataValue(scaleInverse(noDataValue));
+    }
+
+    /**
+     * Gets the optional minimum value associated to the selected node
+     * @return
+     */
+    public Number getValidMin(){
+        return valid_min;
+    }
+
+    /**
+     * Sets the minimum Raster value of this RasterNode
+     *
+     * @param minimum value The minimum value
+     */
+    public void setValidMin(Number valid_min){
+        if(this.valid_min != valid_min){
+            this.valid_min = valid_min;
+            setModified(true);
+            fireProductNodeChanged(PROPERTY_NAME_VALID_MIN);
+            fireProductNodeDataChanged();
+        }
+    }
+
+    /**
+     * Gets the optional maximum value of the Raster associated to the selected node
+     * @return
+     */
+    public Number getValidMax(){
+        return valid_max;
+    }
+
+    /**
+     * Sets the maximum Raster value
+     *
+     * @param maximum The maximum value
+     */
+    public void setValidMax(Number valid_max){
+        if(this.valid_max != valid_max){
+            this.valid_max = valid_max;
+            setModified(true);
+            fireProductNodeChanged(PROPERTY_NAME_VALID_MAX);
+            fireProductNodeDataChanged();
+        }
+    }
+
+    /**
+     * Gets the optional Standard Name associated to the selected node
+     * @return
+     */
+    public String getStandardName(){
+        return standard_name;
+    }
+
+    /**
+     * Sets the standard name of this RasterNode
+     *
+     * @param standard_name The band standard name
+     */
+    public void setStandardName(String standard_name){
+        if(this.standard_name != standard_name){
+            this.standard_name = standard_name;
+            setModified(true);
+            fireProductNodeChanged(PROPERTY_NAME_STANDARD_NAME);
+            fireProductNodeDataChanged();
+        }
+    }
+
+    /**
+     * Gets the optional "Comments" associated to the selected node
+     * @return
+     */
+    public String getComment(){
+        return comment;
+    }
+
+    /**
+     * Sets the "Comments" of this RasterNode
+     *
+     * @param comment The node comment
+     */
+    public void setComment(String comment){
+        if(this.comment != comment){
+            this.comment = comment;
+            setModified(true);
+            fireProductNodeChanged(PROPERTY_NAME_COMMENT);
+            fireProductNodeDataChanged();
+        }
     }
 
     /**

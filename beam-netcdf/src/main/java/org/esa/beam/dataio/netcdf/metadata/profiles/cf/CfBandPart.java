@@ -151,6 +151,29 @@ public class CfBandPart extends ProfilePartIO {
             rasterDataNode.setNoDataValue(noDataValue.doubleValue());
             rasterDataNode.setNoDataValueUsed(true);
         }
+        // Setting of the Valid Minimum value
+        final Number validMin = getValidMin(variable);
+        if(validMin != null){
+            rasterDataNode.setValidMin(validMin);
+        }
+
+        // Setting of the Valid Maximum value
+        final Number validMax = getValidMax(variable);
+        if(validMax != null){
+            rasterDataNode.setValidMax(validMax);
+        }
+
+        // Setting of the Standard Name
+        final String standard = getStandardName(variable);
+        if(standard != null){
+            rasterDataNode.setStandardName(standard);
+        }
+
+        // Setting of the Comments
+        final String comment = getComment(variable);
+        if(comment != null){
+            rasterDataNode.setComment(comment);
+        }
     }
 
     public static void writeCfBandAttributes(RasterDataNode rasterDataNode, NVariable variable) throws IOException {
@@ -253,8 +276,72 @@ public class CfBandPart extends ProfilePartIO {
                     
                 }
             }
+        }else{
+            return setDefaultNoData(variable);
         }
         return null;
+    }
+
+    /**
+     * Private method for setting a default nodata value associated to the variable {@link DataType} if nothing is present.
+     *
+     * @param variable
+     * @return
+     */
+    private static Number setDefaultNoData(Variable variable) {
+        // Selection of the DataType associated to the band
+        DataType type = variable.getDataType();
+
+        Number nodata = null;
+
+        switch (type) {
+        case BYTE:
+            nodata = Byte.MIN_VALUE;
+            break;
+        case SHORT:
+            nodata = Short.MIN_VALUE;
+            break;
+        case INT:
+            nodata = Integer.MIN_VALUE;
+            break;
+        case FLOAT:
+            nodata = -Float.MAX_VALUE;
+            break;
+        case DOUBLE:
+            nodata = -Double.MAX_VALUE;
+            break;
+        case LONG:
+            nodata = Long.MIN_VALUE;
+            break;
+        default:
+            // return null
+            break;
+        }
+        return nodata;
+    }
+
+    private static String getStandardName(Variable variable) {
+        Attribute attribute = variable.findAttribute(Constants.STANDARD_NAME);
+
+        return attribute != null ? attribute.getStringValue() : null;
+    }
+
+    private static Number getValidMin(Variable variable) {
+        Attribute attribute = variable.findAttribute(Constants.VALID_MIN);
+
+        return attribute != null ? attribute.getNumericValue() : null;
+    }
+
+    private static Number getValidMax(Variable variable) {
+        Attribute attribute = variable.findAttribute(Constants.VALID_MAX);
+
+        return attribute != null ? attribute.getNumericValue() : null;
+    }
+
+    private static String getComment(Variable variable) {
+        Attribute attribute = variable.findAttribute(Constants.COMMENT);
+
+        return attribute != null ? attribute.getStringValue() : null;
     }
 
     private static int getRasterDataType(Variable variable, DataTypeWorkarounds workarounds) {
